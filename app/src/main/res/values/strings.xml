@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">countriesDemo</string>
+
+
+    <!-- Defualt Ui Error messages -->
+    <string name="ui_network_error">Hubo un problema de conexión. Revisa tu internet e inténtalo de nuevo.</string>
+    <string name="ui_not_found_error">No se encontraron resultados.</string>
+    <string name="ui_generic_error">Ocurrió un error inesperado.</string>
+    <string name="retry_button_text">Reintentar</string>
+
+    <!-- Country list strings -->
+    <string name="ctop_bar_title">Countries</string>
+    <string name="search_field_hint">Search countries</string>
+    <string name="ccard_capital">Capital: </string>
+    <string name="ccard_region">Region: </string>
+
+    <!-- Country details strings -->
+    <string name="capital">Capital - </string>
+    <string name="region">Region - </string>
+    <string name="subregion">Subregion - </string>
+    <string name="languages">Languages - </string>
+    <string name="currencies">Currencies - </string>
+    <string name="population">Population - </string>
+    <string name="car_driver_side">Car Driver Side - </string>
+
+</resources>
