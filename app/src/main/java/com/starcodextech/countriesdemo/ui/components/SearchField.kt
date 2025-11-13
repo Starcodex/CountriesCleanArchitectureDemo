@@ -13,13 +13,12 @@ import com.starcodextech.countriesdemo.ui.theme.searchFieldPadding
 
 @Composable
 fun SearchField(
-    searchQuery: MutableState<String>,
+    searchQuery: String,
     onSearchQueryChange: (String) -> Unit
 ){
     OutlinedTextField(
-        value = searchQuery.value,
+        value = searchQuery,
         onValueChange = {
-            searchQuery.value = it
             onSearchQueryChange(it)
         },
         modifier = Modifier

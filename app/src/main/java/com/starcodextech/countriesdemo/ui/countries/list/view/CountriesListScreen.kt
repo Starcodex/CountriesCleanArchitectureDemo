@@ -1,27 +1,27 @@
 package com.starcodextech.countriesdemo.ui.countries.list.view
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBars
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.starcodextech.countriesdemo.ui.components.CountriesList
-import com.starcodextech.countriesdemo.ui.components.CountriesTopBar
 import com.starcodextech.countriesdemo.ui.components.EmptyView
 import com.starcodextech.countriesdemo.ui.components.ErrorView
 import com.starcodextech.countriesdemo.ui.components.LoadingView
 import com.starcodextech.countriesdemo.ui.components.ProvideTopBarState
+import com.starcodextech.countriesdemo.ui.components.SearchField
 import com.starcodextech.countriesdemo.ui.countries.list.state.CountriesListUiState
 import com.starcodextech.countriesdemo.ui.countries.list.viewmodel.CountriesListViewModel
 import com.starcodextech.countriesdemo.ui.main.state.TopBarUiState
+import com.starcodextech.countriesdemo.ui.theme.defaultPadding
 
 @Composable
 fun CountriesListRoute(
@@ -32,14 +32,21 @@ fun CountriesListRoute(
 
     ProvideTopBarState(topBarState = topBarState)
 
-    val state by viewModel.uiState.collectAsState()
-    val searchQuery = remember { mutableStateOf("") }
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val searchQuery = viewModel.searchQuery.collectAsStateWithLifecycle()
+    val onSearchQueryChanged = viewModel::onSearchQueryChanged
+
+    LaunchedEffect(Unit) {
+        viewModel.loadCountries()
+        viewModel.observeSearch()
+    }
 
     CountriesListScreen(
         state = state,
         onRetry = { viewModel.loadCountries() },
         onCountryClick = onCountryClick,
-        searchQuery = searchQuery
+        searchQuery = searchQuery,
+        onSearchQueryChanged = onSearchQueryChanged
     )
 }
 
@@ -48,7 +55,8 @@ fun CountriesListScreen(
     state: CountriesListUiState,
     onRetry: () -> Unit,
     onCountryClick: (code: String) -> Unit,
-    searchQuery: MutableState<String>,
+    searchQuery: State<String>,
+    onSearchQueryChanged: (String) -> Unit = { }
 ) {
     when {
         state.isLoading -> {
@@ -67,10 +75,22 @@ fun CountriesListScreen(
         }
 
         else -> {
-            CountriesList(
-                countries = state.countries,
-                onCountryClick = onCountryClick
-            )
+
+            Column {
+
+                SearchField(
+                    searchQuery = searchQuery.value,
+                    onSearchQueryChange = onSearchQueryChanged
+                )
+
+                Spacer(modifier = Modifier.height(defaultPadding))
+
+                CountriesList(
+                    countries = state.countries,
+                    onCountryClick = onCountryClick
+                )
+
+            }
         }
     }
 }
