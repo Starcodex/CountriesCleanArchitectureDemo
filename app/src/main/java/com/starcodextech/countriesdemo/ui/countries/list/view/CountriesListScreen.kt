@@ -43,7 +43,7 @@ fun CountriesListRoute(
 
     CountriesListScreen(
         state = state,
-        onRetry = { viewModel.loadCountries() },
+        onRetry = { viewModel.refreshCountries() },
         onCountryClick = onCountryClick,
         searchQuery = searchQuery,
         onSearchQueryChanged = onSearchQueryChanged

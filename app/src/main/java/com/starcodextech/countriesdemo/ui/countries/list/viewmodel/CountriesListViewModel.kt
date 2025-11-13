@@ -36,6 +36,8 @@ class CountriesListViewModel @Inject constructor(
 
     private var allCountries: List<CountrySummaryUiModel> = emptyList()
 
+    private var hasLoaded = false
+
     fun onSearchQueryChanged(query: String) {
         _searchQuery.value = query
     }
@@ -62,7 +64,10 @@ class CountriesListViewModel @Inject constructor(
         }
     }
 
-    fun loadCountries() {
+    fun loadCountries(forceRefresh: Boolean = false) {
+
+        if (!forceRefresh && hasLoaded) return
+
         viewModelScope.launch(dispatchers.io) {
             _uiState.update { it.copy(isLoading = true, error = null) }
 
@@ -73,6 +78,7 @@ class CountriesListViewModel @Inject constructor(
                         .sortedBy { it.commonName }
 
                     allCountries = uiList
+                    hasLoaded = true
 
                     _uiState.value = CountriesListUiState(
                         isLoading = false,
@@ -91,5 +97,9 @@ class CountriesListViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun refreshCountries() {
+        loadCountries(forceRefresh = true)
     }
 }

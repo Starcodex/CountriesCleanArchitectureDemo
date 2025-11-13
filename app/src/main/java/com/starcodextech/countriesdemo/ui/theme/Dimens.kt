@@ -14,6 +14,7 @@ val defaultViewMessagePadding: Dp = 24.dp
 
 //Image Sizes
 val countrySummaryFlagImageHeight: Dp = 48.dp
+val countryDetailsFlagImageHeight: Dp = 200.dp
 
 // corner radius
 val defaultCornerRadius: Dp = 4.dp
