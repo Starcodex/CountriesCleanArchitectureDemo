@@ -15,21 +15,24 @@ class CountryDetailsRepositoryImpl @Inject constructor(
     private val api: RestCountriesApi,
     private val mapper: Mapper<CountryDto, CountryDetails>
 ) : CountryDetailsRepository {
+
+    private val TAG = this.javaClass.name
+
     override suspend fun getCountryByName(name: String): AppResult<CountryDetails, AppError> {
         return try {
-            Log.d(this.javaClass.name, "getCountryByName($name) - calling API")
+            Log.d(TAG, "getCountryByName($name) - calling API")
 
             val result = api.getCountryByName(name)
-            Log.d(this.javaClass.name, "getCountryByName() - API returned ${result.size} items")
+            Log.d(TAG, "getCountryByName() - API returned ${result.size} items")
 
             val dto = result.firstOrNull() ?: throw Exception("Country not found")
 
             val country = mapper.map(dto)
-            Log.d(this.javaClass.name, "getCountryByName() - mapped $country")
+            Log.d(TAG, "getCountryByName() - mapped $country")
 
             AppResult.Success(country)
         } catch (t: Throwable) {
-            Log.e(this.javaClass.name, "getCountryByName() - error calling API", t)
+            Log.e(TAG, "getCountryByName() - error calling API", t)
             AppResult.Error(t.toAppError())
         }
     }

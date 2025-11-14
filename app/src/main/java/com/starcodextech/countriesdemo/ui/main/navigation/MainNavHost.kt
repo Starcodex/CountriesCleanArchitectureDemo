@@ -13,7 +13,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.starcodextech.countriesdemo.R
 import com.starcodextech.countriesdemo.ui.components.CountriesTopBar
-import com.starcodextech.countriesdemo.ui.countries.detail.navigation.CountryDetailsNavigation
 import com.starcodextech.countriesdemo.ui.countries.detail.navigation.CountryDetailsNavigation.COUNTRY_NAME
 import com.starcodextech.countriesdemo.ui.countries.detail.navigation.CountryDetailsNavigation.destinationWithArguments
 import com.starcodextech.countriesdemo.ui.countries.detail.navigation.countryDetailsGraph
@@ -61,7 +60,6 @@ fun MainNavHost(
             )
 
             countryDetailsGraph(
-                onBackClick = { navController.popBackStack() },
                 topBarState = topBarState
             )
         }

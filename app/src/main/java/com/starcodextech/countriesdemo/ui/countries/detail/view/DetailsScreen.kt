@@ -26,17 +26,17 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.starcodextech.countriesdemo.R
+import com.starcodextech.countriesdemo.ui.common.state.ScreenUiState
 import com.starcodextech.countriesdemo.ui.components.DetailCountryRow
 import com.starcodextech.countriesdemo.ui.components.EmptyView
 import com.starcodextech.countriesdemo.ui.components.ErrorView
 import com.starcodextech.countriesdemo.ui.components.LoadingView
-import com.starcodextech.countriesdemo.ui.countries.detail.state.CountryDetailsUiState
 import com.starcodextech.countriesdemo.ui.theme.listContentPadding
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun DetailsRoute(
     viewModel: DetailsViewModel = hiltViewModel(),
-    onBackClick: () -> Boolean,
     topBarState: MutableState<TopBarUiState>
 ) {
     val vmTopBarState by viewModel.topBarState.collectAsStateWithLifecycle()
@@ -56,34 +56,28 @@ fun DetailsRoute(
         state = state,
         loadCountryDetails = loadCountryDetails
     )
-
 }
 
 @Composable
 fun DetailsScreen(
-    state: CountryDetailsUiState,
+    state: ScreenUiState<CountryDetailsUiModel>,
     loadCountryDetails: () -> Unit
 ) {
-    when {
-        state.isLoading -> {
+    when (state) {
+        is ScreenUiState.Loading -> {
             LoadingView()
         }
 
-        state.error != null -> {
-            ErrorView(
-                error = state.error,
-                onRetry = { loadCountryDetails() }
-            )
+        is ScreenUiState.Error -> {
+            ErrorView(error = state.uiError, onRetry = loadCountryDetails)
         }
 
-        state.country == null -> {
-            EmptyView(onRetry = { loadCountryDetails() })
+        is ScreenUiState.Empty -> {
+            EmptyView(onRetry = loadCountryDetails)
         }
 
-        else -> {
-            DetailsView(
-                country = state.country
-            )
+        is ScreenUiState.Success<CountryDetailsUiModel> -> {
+            DetailsView(country = state.content)
         }
     }
 }
@@ -131,13 +125,13 @@ fun DetailsView(
                 .fillMaxWidth()
                 .padding(horizontal = defaultPadding)
         ) {
-            DetailCountryRow(stringResource(R.string.capital), country.capital)
-            DetailCountryRow(stringResource(R.string.region), country.region)
-            DetailCountryRow(stringResource(R.string.subregion), country.subRegion)
-            DetailCountryRow(stringResource(R.string.languages), country.languages)
-            DetailCountryRow(stringResource(R.string.currencies), country.currencies)
-            DetailCountryRow(stringResource(R.string.population), country.population)
-            DetailCountryRow(stringResource(R.string.car_driver_side), country.carDriverSide)
+            DetailCountryRow(stringResource(R.string.capital, country.capital))
+            DetailCountryRow(stringResource(R.string.region, country.region))
+            DetailCountryRow(stringResource(R.string.subregion, country.subRegion))
+            DetailCountryRow(stringResource(R.string.languages, country.languages))
+            DetailCountryRow(stringResource(R.string.currencies, country.currencies))
+            DetailCountryRow(stringResource(R.string.population, country.population))
+            DetailCountryRow(stringResource(R.string.car_driver_side, country.carDriverSide))
         }
     }
 }

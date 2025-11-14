@@ -2,23 +2,30 @@ package com.starcodextech.countriesdemo.ui.countries.list.view
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.starcodextech.countriesdemo.R
+import com.starcodextech.countriesdemo.ui.common.state.ScreenUiState
 import com.starcodextech.countriesdemo.ui.components.CountriesList
 import com.starcodextech.countriesdemo.ui.components.EmptyView
 import com.starcodextech.countriesdemo.ui.components.ErrorView
 import com.starcodextech.countriesdemo.ui.components.LoadingView
 import com.starcodextech.countriesdemo.ui.components.ProvideTopBarState
 import com.starcodextech.countriesdemo.ui.components.SearchField
-import com.starcodextech.countriesdemo.ui.countries.list.state.CountriesListUiState
+import com.starcodextech.countriesdemo.ui.countries.list.state.CountriesListSuccess
 import com.starcodextech.countriesdemo.ui.countries.list.viewmodel.CountriesListViewModel
 import com.starcodextech.countriesdemo.ui.main.state.TopBarUiState
 import com.starcodextech.countriesdemo.ui.theme.defaultPadding
@@ -52,30 +59,30 @@ fun CountriesListRoute(
 
 @Composable
 fun CountriesListScreen(
-    state: CountriesListUiState,
+    state: ScreenUiState<CountriesListSuccess>,
     onRetry: () -> Unit,
     onCountryClick: (code: String) -> Unit,
     searchQuery: State<String>,
     onSearchQueryChanged: (String) -> Unit = { }
 ) {
-    when {
-        state.isLoading -> {
+    when (state) {
+
+        is ScreenUiState.Loading -> {
             LoadingView()
         }
 
-        state.error != null -> {
+        is ScreenUiState.Error -> {
             ErrorView(
-                error = state.error,
+                error = state.uiError,
                 onRetry = onRetry
             )
         }
 
-        state.countries.isEmpty() -> {
+        is ScreenUiState.Empty -> {
             EmptyView(onRetry = onRetry)
         }
 
-        else -> {
-
+        is ScreenUiState.Success -> {
             Column {
 
                 SearchField(
@@ -85,11 +92,25 @@ fun CountriesListScreen(
 
                 Spacer(modifier = Modifier.height(defaultPadding))
 
-                CountriesList(
-                    countries = state.countries,
-                    onCountryClick = onCountryClick
-                )
+                when (val content = state.content) {
+                    is CountriesListSuccess.WithData -> {
+                        CountriesList(
+                            countries = content.countries,
+                            onCountryClick = onCountryClick
+                        )
+                    }
 
+                    is CountriesListSuccess.NoData -> {
+                        Text(
+                            text = stringResource(R.string.search_query_empty_results, searchQuery.value),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(defaultPadding),
+                            textAlign = TextAlign.Center,
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                    }
+                }
             }
         }
     }

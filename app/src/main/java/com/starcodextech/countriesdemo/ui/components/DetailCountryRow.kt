@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import com.starcodextech.countriesdemo.ui.theme.listContentPadding
 
 @Composable
-fun DetailCountryRow(label: String, value: String) {
+fun DetailCountryRow(value: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -20,11 +20,6 @@ fun DetailCountryRow(label: String, value: String) {
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.weight(1f)
-        )
         Text(
             text = value,
             style = MaterialTheme.typography.bodyMedium,

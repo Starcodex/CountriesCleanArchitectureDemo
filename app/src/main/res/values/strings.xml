@@ -7,20 +7,22 @@
     <string name="ui_not_found_error">No se encontraron resultados.</string>
     <string name="ui_generic_error">Ocurrió un error inesperado.</string>
     <string name="retry_button_text">Reintentar</string>
+    <string name="ui_empty_results">There aren\'t countries to show.</string>
 
     <!-- Country list strings -->
     <string name="ctop_bar_title">Countries</string>
     <string name="search_field_hint">Search countries</string>
+    <string name="search_query_empty_results">There aren\'t results for : %1$s</string>
     <string name="ccard_capital">Capital: </string>
     <string name="ccard_region">Region: </string>
 
     <!-- Country details strings -->
-    <string name="capital">Capital - </string>
-    <string name="region">Region - </string>
-    <string name="subregion">Subregion - </string>
-    <string name="languages">Languages - </string>
-    <string name="currencies">Currencies - </string>
-    <string name="population">Population - </string>
-    <string name="car_driver_side">Car Driver Side - </string>
+    <string name="capital">Capital - %1$s</string>
+    <string name="region">Region - %1$s</string>
+    <string name="subregion">Subregion - %1$s</string>
+    <string name="languages">Languages - %1$s</string>
+    <string name="currencies">Currencies - %1$s</string>
+    <string name="population">Population - %1$s</string>
+    <string name="car_driver_side">Car Driver Side - %1$s</string>
 
 </resources>

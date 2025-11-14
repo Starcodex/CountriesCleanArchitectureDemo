@@ -17,12 +17,9 @@ object CountryDetailsNavigation : BaseDestination {
     override val route: String = "details_route"
     override val destination: String = "details_destination/{$COUNTRY_NAME}"
 
-    fun createRoute(countryName: String): String =
-        "details_destination/$countryName"
 }
 
 fun NavGraphBuilder.countryDetailsGraph(
-    onBackClick: () -> Boolean,
     topBarState: MutableState<TopBarUiState>
 ) {
     navigation(
@@ -39,7 +36,6 @@ fun NavGraphBuilder.countryDetailsGraph(
             )
         ) {
             DetailsRoute(
-                onBackClick = onBackClick,
                 topBarState = topBarState
             )
         }

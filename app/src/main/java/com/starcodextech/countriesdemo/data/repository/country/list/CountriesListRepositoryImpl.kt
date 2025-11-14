@@ -16,18 +16,20 @@ class CountriesListRepositoryImpl  @Inject constructor(
     private val mapper: Mapper<CountryDto, CountrySummary>
 ) : CountriesListRepository {
 
+    private val TAG = this.javaClass.name
+
     override suspend fun getAllCountries(): AppResult<List<CountrySummary>, AppError> {
         return try {
-            Log.d("CountryRepo", "getAllCountries() - calling API")
+            Log.d(TAG, "getAllCountries() - calling API")
             val dtos = api.getAllCountries()
-            Log.d("CountryRepo", "getAllCountries() - API returned ${dtos.size} items")
+            Log.d(TAG, "getAllCountries() - API returned ${dtos.size} items")
 
             val summaries = dtos.map { mapper.map(it) }
-            Log.d("CountryRepo", "getAllCountries() - mapped ${summaries.size} items")
+            Log.d(TAG, "getAllCountries() - mapped ${summaries.size} items")
 
             AppResult.Success(summaries)
         } catch (t: Throwable) {
-            Log.e("CountryRepo", "getAllCountries() - error calling API", t)
+            Log.e(TAG, "getAllCountries() - error calling API", t)
             AppResult.Error(t.toAppError())
         }
     }
