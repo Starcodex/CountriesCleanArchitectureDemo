@@ -8,16 +8,16 @@ import javax.inject.Inject
 class CountryDetailsMapper @Inject constructor() : Mapper<CountryDto, CountryDetails> {
     override fun map(from: CountryDto): CountryDetails =
         CountryDetails(
-            flagUrl = from.flags.png,
-            commonName = from.name.common,
-            officialName = from.name.official,
-            capital = from.capital.firstOrNull().orEmpty(),
-            region = from.region,
+            flagUrl = from.flags?.png.orEmpty(),
+            commonName = from.name?.common.orEmpty(),
+            officialName = from.name?.official.orEmpty(),
+            capital = formattedCapital(from.capital),
+            region = from.region.orEmpty(),
             subRegion = from.subregion.orEmpty(),
-            languages = from.languages.values.joinToString(", "),
+            languages = from.languages?.values?.joinToString(", ").orEmpty(),
             currencies = formattedCurrency(from.currencies),
             population = from.population.toString(),
-            carDriverSide = from.car.side
+            carDriverSide = from.car?.side.orEmpty()
         )
 
 }

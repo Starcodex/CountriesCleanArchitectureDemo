@@ -9,10 +9,10 @@ import javax.inject.Inject
 class CountrySummaryMapper @Inject constructor(): Mapper<CountryDto, CountrySummary> {
     override fun map(from: CountryDto): CountrySummary =
         CountrySummary(
-            code = from.cca3,
-            flagUrl = from.flags.png,
-            commonName = from.name.common,
-            officialName = from.name.official,
-            capital = from.capital.firstOrNull() ?: "N/A",
+            code = from.cca3.orEmpty(),
+            flagUrl = from.flags?.png.orEmpty(),
+            commonName = from.name?.common.orEmpty(),
+            officialName = from.name?.official.orEmpty(),
+            capital = formattedCapital(from.capital),
         )
 }

@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CarDto(
     val signs: List<String> = emptyList(),
-    val side: String
+    val side: String = ""
 )

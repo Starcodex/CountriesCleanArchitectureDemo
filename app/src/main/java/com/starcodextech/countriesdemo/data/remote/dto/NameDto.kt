@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NameDto(
-    val common: String,
-    val official: String,
+    val common: String = "",
+    val official: String = "",
     val nativeName: Map<String, NativeNameDto> = emptyMap()
 )

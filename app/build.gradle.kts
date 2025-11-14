@@ -82,6 +82,13 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
 
+
+    // Testing
+
+    // Hilt Testing
+    testImplementation(libs.hilt.android.testing)
+    kaptTest(libs.hilt.compiler)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

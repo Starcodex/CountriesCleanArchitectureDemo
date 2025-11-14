@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CurrencyDto(
-    val name: String,
-    val symbol: String? = null
+    val name: String? = "",
+    val symbol: String? = ""
 )
