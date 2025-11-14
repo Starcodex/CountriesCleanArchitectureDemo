@@ -2,6 +2,7 @@ package com.starcodextech.countriesdemo.data.repository.country.details
 
 import android.util.Log
 import com.starcodextech.countriesdemo.common.error.AppError
+import com.starcodextech.countriesdemo.common.logger.Logger
 import com.starcodextech.countriesdemo.common.mapper.Mapper
 import com.starcodextech.countriesdemo.common.result.AppResult
 import com.starcodextech.countriesdemo.data.error.toAppError
@@ -13,26 +14,27 @@ import javax.inject.Inject
 
 class CountryDetailsRepositoryImpl @Inject constructor(
     private val api: RestCountriesApi,
-    private val mapper: Mapper<CountryDto, CountryDetails>
+    private val mapper: Mapper<CountryDto, CountryDetails>,
+    private val logger: Logger
 ) : CountryDetailsRepository {
 
     private val TAG = this.javaClass.name
 
     override suspend fun getCountryByName(name: String): AppResult<CountryDetails, AppError> {
         return try {
-            Log.d(TAG, "getCountryByName($name) - calling API")
+            logger.d(TAG, "getCountryByName($name) - calling API")
 
             val result = api.getCountryByName(name)
-            Log.d(TAG, "getCountryByName() - API returned ${result.size} items")
+            logger.d(TAG, "getCountryByName() - API returned ${result.size} items")
 
             val dto = result.firstOrNull() ?: throw Exception("Country not found")
 
             val country = mapper.map(dto)
-            Log.d(TAG, "getCountryByName() - mapped $country")
+            logger.d(TAG, "getCountryByName() - mapped $country")
 
             AppResult.Success(country)
         } catch (t: Throwable) {
-            Log.e(TAG, "getCountryByName() - error calling API", t)
+            logger.e(TAG, "getCountryByName() - error calling API", t)
             AppResult.Error(t.toAppError())
         }
     }

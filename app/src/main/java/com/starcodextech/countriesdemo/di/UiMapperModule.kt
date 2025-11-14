@@ -28,4 +28,5 @@ abstract class UiMapperModule {
     abstract fun bindCountrySummaryUiMapper(
         impl: CountrySummaryUiMapper
     ): Mapper<CountrySummary, CountrySummaryUiModel>
+
 }

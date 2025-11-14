@@ -17,4 +17,5 @@ abstract class CoroutineModule {
     abstract fun bindAppDispatchers(
         impl: AppDispatchersImpl
     ): AppDispatchers
+
 }

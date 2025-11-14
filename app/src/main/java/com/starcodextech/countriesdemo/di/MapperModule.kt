@@ -27,4 +27,5 @@ abstract class MapperModule {
     abstract fun bindCountryDetailsMapper(
         impl: CountryDetailsMapper
     ): Mapper<CountryDto, CountryDetails>
+
 }

@@ -25,4 +25,5 @@ abstract class UseCaseModule {
     abstract fun bindCountryDetailsUseCase(
         impl: CountryDetailsUseCaseImpl
     ): CountryDetailsUseCase
+
 }

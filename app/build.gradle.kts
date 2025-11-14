@@ -88,6 +88,7 @@ dependencies {
     // Hilt Testing
     testImplementation(libs.hilt.android.testing)
     kaptTest(libs.hilt.compiler)
+    testImplementation(libs.mockk)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

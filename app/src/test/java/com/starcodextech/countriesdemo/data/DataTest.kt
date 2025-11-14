@@ -14,6 +14,11 @@ object DataTest {
     // DTOs (remote)
     // ==========
 
+    // Country code constants
+    const val ukCountryCode = "GBR"
+    const val colombiaCountryCode = "COL"
+
+
     // Currencies DTOs
     val usdCurrencyCode = "USD"
     val usdCurrencyDto = CurrencyDto(name = "United States dollar", symbol = "$")
@@ -51,7 +56,7 @@ object DataTest {
             official = "United Kingdom of Great Britain and Northern Ireland"
         ),
         capital = londonCapitalMap,
-        cca3 = "GBR",
+        cca3 = ukCountryCode,
         region = "Europe",
         subregion = "Northern Europe",
         languages = mapOf("eng" to "English"),
@@ -74,7 +79,7 @@ object DataTest {
             official = "Republic of Colombia"
         ),
         capital = bogotaCapitalMap,
-        cca3 = "COL",
+        cca3 = colombiaCountryCode,
         region = "Americas",
         subregion = "South America",
         languages = mapOf("spa" to "Spanish"),
@@ -113,6 +118,22 @@ object DataTest {
     )
 
 
+    fun genericCountryDto(code: String): CountryDto =
+        CountryDto(
+            name = NameDto(
+                common = "Country $code",
+                official = "Official $code"
+            ),
+            capital = listOf("Capital $code"),
+            cca3 = code,
+            region = "Region",
+            subregion = "Subregion",
+            languages = emptyMap(),
+            currencies = emptyMap(),
+            population = 1,
+            car = CarDto(signs = emptyList(), side = "right"),
+            flags = FlagsDto(png = "png-$code", svg = "svg-$code")
+        )
 
     // ==========
     // Expected domain models

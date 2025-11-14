@@ -58,4 +58,5 @@ object AppModule {
         retrofit: Retrofit
     ): RestCountriesApi =
         retrofit.create(RestCountriesApi::class.java)
+
 }
