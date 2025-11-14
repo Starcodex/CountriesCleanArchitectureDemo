@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.starcodextech.countriesdemo.R
 import com.starcodextech.countriesdemo.ui.common.state.ScreenUiState
@@ -31,8 +32,9 @@ import com.starcodextech.countriesdemo.ui.components.DetailCountryRow
 import com.starcodextech.countriesdemo.ui.components.EmptyView
 import com.starcodextech.countriesdemo.ui.components.ErrorView
 import com.starcodextech.countriesdemo.ui.components.LoadingView
+import com.starcodextech.countriesdemo.ui.preview.PreviewData
+import com.starcodextech.countriesdemo.ui.theme.CountriesDemoTheme
 import com.starcodextech.countriesdemo.ui.theme.listContentPadding
-import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun DetailsRoute(
@@ -133,5 +135,13 @@ fun DetailsView(
             DetailCountryRow(stringResource(R.string.population, country.population))
             DetailCountryRow(stringResource(R.string.car_driver_side, country.carDriverSide))
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DetailsView_Preview() {
+    CountriesDemoTheme {
+        DetailsView(country = PreviewData.ukDetails)
     }
 }

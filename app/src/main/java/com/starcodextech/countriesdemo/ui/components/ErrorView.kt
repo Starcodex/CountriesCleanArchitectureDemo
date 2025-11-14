@@ -15,6 +15,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.starcodextech.countriesdemo.R
+import com.starcodextech.countriesdemo.ui.theme.CountriesDemoTheme
 import com.starcodextech.countriesdemo.ui.theme.defaultPadding
 
 @Composable
@@ -41,5 +44,33 @@ fun ErrorView(
             Spacer(modifier = Modifier.height(defaultPadding))
             RetryButton(onRetry = onRetry)
         }
+    }
+}
+
+@Preview(
+    showBackground = true,
+    name = "Error view – generic error"
+)
+@Composable
+fun ErrorViewGenericPreview() {
+    CountriesDemoTheme {
+        ErrorView(
+            error = UiError.Generic(messageRes = R.string.ui_generic_error),
+            onRetry = {  }
+        )
+    }
+}
+
+@Preview(
+    showBackground = true,
+    name = "Error view – network error"
+)
+@Composable
+fun ErrorViewNetworkPreview() {
+    CountriesDemoTheme {
+        ErrorView(
+            error = UiError.Network(messageRes = R.string.ui_network_error),
+            onRetry = {  }
+        )
     }
 }

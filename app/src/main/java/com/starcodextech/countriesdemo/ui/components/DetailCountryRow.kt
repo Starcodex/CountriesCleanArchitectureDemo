@@ -9,6 +9,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.starcodextech.countriesdemo.ui.preview.PreviewData
+import com.starcodextech.countriesdemo.ui.theme.CountriesDemoTheme
 import com.starcodextech.countriesdemo.ui.theme.listContentPadding
 
 @Composable
@@ -24,6 +27,19 @@ fun DetailCountryRow(value: String) {
             text = value,
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.weight(1f)
+        )
+    }
+}
+
+@Preview(
+    showBackground = true,
+    name = "Detail row – simple text"
+)
+@Composable
+fun DetailCountryRowPreview() {
+    CountriesDemoTheme {
+        DetailCountryRow(
+            value = PreviewData.colombiaDetails.officialName
         )
     }
 }

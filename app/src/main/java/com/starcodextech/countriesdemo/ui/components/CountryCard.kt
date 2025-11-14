@@ -21,7 +21,10 @@ import coil.compose.AsyncImage
 import androidx.compose.material3.Text
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import com.starcodextech.countriesdemo.ui.countries.list.model.CountrySummaryUiModel
+import com.starcodextech.countriesdemo.ui.preview.PreviewData
+import com.starcodextech.countriesdemo.ui.theme.CountriesDemoTheme
 import com.starcodextech.countriesdemo.ui.theme.countrySummaryFlagImageHeight
 import com.starcodextech.countriesdemo.ui.theme.defaultCardElevation
 import com.starcodextech.countriesdemo.ui.theme.defaultCornerRadius
@@ -69,7 +72,7 @@ fun CountryCard(
                 )
 
                 Text(
-                    text = "Capital: ${country.officialName}",
+                    text = country.officialName,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
@@ -77,11 +80,25 @@ fun CountryCard(
                 )
 
                 Text(
-                    text = "Region: ${country.capital}",
+                    text = country.capital,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
+    }
+}
+
+@Preview(
+    showBackground = true,
+    name = "Country card – sample"
+)
+@Composable
+fun CountryCardPreview() {
+    CountriesDemoTheme {
+        CountryCard(
+            country = PreviewData.ukSummary,
+            onCountryClick = {  }
+        )
     }
 }

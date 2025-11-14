@@ -13,7 +13,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import com.starcodextech.countriesdemo.R
+import com.starcodextech.countriesdemo.ui.theme.CountriesDemoTheme
 import com.starcodextech.countriesdemo.ui.theme.defaultViewMessagePadding
 
 @Composable
@@ -38,5 +40,18 @@ fun EmptyView(
             Spacer(modifier = Modifier.height(defaultViewMessagePadding))
             RetryButton(onRetry = onRetry)
         }
+    }
+}
+
+@Preview(
+    showBackground = true,
+    name = "Empty view – default"
+)
+@Composable
+fun EmptyViewPreview() {
+    CountriesDemoTheme {
+        EmptyView(
+            onRetry = {  }
+        )
     }
 }
