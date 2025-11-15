@@ -11,9 +11,9 @@ import com.starcodextech.countriesdemo.domain.countries.detail.usecase.CountryDe
 import com.starcodextech.countriesdemo.ui.common.mapper.toUiError
 import com.starcodextech.countriesdemo.ui.common.state.ScreenUiState
 import com.starcodextech.countriesdemo.ui.countries.detail.model.CountryDetailsUiModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import com.starcodextech.countriesdemo.ui.countries.detail.navigation.CountryDetailsNavigation.COUNTRY_NAME
 import com.starcodextech.countriesdemo.ui.main.state.TopBarUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.starcodextech.countriesdemo.ui.theme.defaultPadding
 import com.starcodextech.countriesdemo.ui.theme.CountriesDemoTheme
+import com.starcodextech.countriesdemo.ui.theme.defaultPadding
 
 @Composable
 fun LoadingView(

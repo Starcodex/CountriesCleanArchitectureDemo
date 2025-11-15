@@ -1,6 +1,5 @@
 package com.starcodextech.countriesdemo.data.repository.country.list
 
-import android.util.Log
 import com.starcodextech.countriesdemo.common.error.AppError
 import com.starcodextech.countriesdemo.common.logger.Logger
 import com.starcodextech.countriesdemo.common.mapper.Mapper

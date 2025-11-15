@@ -11,9 +11,7 @@ import com.starcodextech.countriesdemo.ui.common.mapper.toUiError
 import com.starcodextech.countriesdemo.ui.common.state.ScreenUiState
 import com.starcodextech.countriesdemo.ui.countries.list.model.CountrySummaryUiModel
 import com.starcodextech.countriesdemo.ui.countries.list.state.CountriesListSuccess
-import com.starcodextech.countriesdemo.ui.countries.list.state.CountriesListUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,6 +19,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class CountriesListViewModel @Inject constructor(
