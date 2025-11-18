@@ -83,15 +83,19 @@ dependencies {
     implementation(libs.coroutines.android)
 
 
+    // Unit tests
+    testImplementation(libs.mockk)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.junit)
+
     // Testing
 
     // Hilt Testing
-    testImplementation(libs.hilt.android.testing)
-    kaptTest(libs.hilt.compiler)
-    testImplementation(libs.mockk)
-    testImplementation(libs.coroutines.test)
+    //testImplementation(libs.hilt.android.testing)
+    //kaptTest(libs.hilt.compiler)
 
-    testImplementation(libs.junit)
+
+    // Instrumented tests
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

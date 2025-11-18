@@ -7,7 +7,10 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.starcodextech.countriesdemo.R
 import com.starcodextech.countriesdemo.ui.theme.CountriesDemoTheme
 import com.starcodextech.countriesdemo.ui.theme.defaultPadding
 
@@ -18,7 +21,8 @@ fun LoadingView(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .padding(defaultPadding),
+            .padding(defaultPadding)
+            .testTag(stringResource(R.string.tag_countries_loading_view)),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator()

@@ -6,7 +6,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.starcodextech.countriesdemo.R
 import com.starcodextech.countriesdemo.ui.countries.list.model.CountrySummaryUiModel
 import com.starcodextech.countriesdemo.ui.preview.PreviewData
 import com.starcodextech.countriesdemo.ui.theme.CountriesDemoTheme
@@ -18,7 +21,9 @@ fun CountriesList(
     onCountryClick: (name: String) -> Unit
 ){
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .testTag(stringResource(R.string.tag_countries_list)),
         contentPadding = PaddingValues(listContentPadding)
     ) {
         items(

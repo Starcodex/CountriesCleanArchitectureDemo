@@ -25,4 +25,14 @@
     <string name="population">Population - %1$s</string>
     <string name="car_driver_side">Car Driver Side - %1$s</string>
 
+
+
+    <!-- Ui tests string tags -->
+    <string name="tag_countries_loading_view">countries_loading_view</string>
+    <string name="tag_countries_error_view">countries_error_view</string>
+    <string name="tag_countries_empty_view">countries_empty_view</string>
+    <string name="tag_countries_search_field">countries_search_field</string>
+    <string name="tag_countries_list">countries_list</string>
+    <string name="tag_countries_detail_view">countries_detail_view</string>
+
 </resources>
