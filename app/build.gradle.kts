@@ -106,3 +106,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+
+// Register task for testing all completely.
+tasks.register("runTests") {
+    group = "verification"
+    description = "Run unit tests and instrumented tests."
+
+    dependsOn("testDebugUnitTest")
+    dependsOn("connectedDebugAndroidTest")
+}
