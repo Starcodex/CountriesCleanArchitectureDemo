@@ -1,8 +1,6 @@
 package com.starcodextech.countriesdemo.ui.countries.detail.view
 
 import androidx.activity.ComponentActivity
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -11,8 +9,6 @@ import com.starcodextech.countriesdemo.R
 import com.starcodextech.countriesdemo.common.error.UiError
 import com.starcodextech.countriesdemo.ui.common.state.ScreenUiState
 import com.starcodextech.countriesdemo.ui.countries.detail.model.CountryDetailsUiModel
-import com.starcodextech.countriesdemo.ui.countries.list.state.CountriesListSuccess
-import com.starcodextech.countriesdemo.ui.countries.list.view.CountriesListScreen
 import com.starcodextech.countriesdemo.ui.preview.PreviewData
 import com.starcodextech.countriesdemo.ui.theme.CountriesDemoTheme
 import org.junit.Rule

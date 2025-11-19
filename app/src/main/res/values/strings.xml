@@ -3,10 +3,10 @@
 
 
     <!-- Defualt Ui Error messages -->
-    <string name="ui_network_error">Hubo un problema de conexión. Revisa tu internet e inténtalo de nuevo.</string>
-    <string name="ui_not_found_error">No se encontraron resultados.</string>
-    <string name="ui_generic_error">Ocurrió un error inesperado.</string>
-    <string name="retry_button_text">Reintentar</string>
+    <string name="ui_network_error">There was a connection problem. Check your internet connection and try again.</string>
+    <string name="ui_not_found_error">No results found.</string>
+    <string name="ui_generic_error">An unexpected error occurred.</string>
+    <string name="retry_button_text">Retry</string>
     <string name="ui_empty_results">There aren\'t countries to show.</string>
 
     <!-- Country list strings -->
@@ -34,5 +34,7 @@
     <string name="tag_countries_search_field">countries_search_field</string>
     <string name="tag_countries_list">countries_list</string>
     <string name="tag_countries_detail_view">countries_detail_view</string>
+    <string name="tag_countries_top_bar_title">countries_top_bar_title</string>
+    <string name="tag_countries_back_button">countries_back_button</string>
 
 </resources>

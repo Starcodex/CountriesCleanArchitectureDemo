@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.starcodextech.countriesdemo.R
@@ -25,19 +27,28 @@ fun CountriesTopBar(
     CenterAlignedTopAppBar(
         title = {
             when {
-                topBarState.titleText != null -> Text(topBarState.titleText)
+                topBarState.titleText != null -> Text(topBarState.titleText, modifier = Modifier.testTag(
+                    stringResource(R.string.tag_countries_top_bar_title)
+                ))
 
-                topBarState.titleRes != null -> Text(stringResource(topBarState.titleRes))
+                topBarState.titleRes != null -> Text(stringResource(topBarState.titleRes), modifier = Modifier.testTag(
+                        stringResource(R.string.tag_countries_top_bar_title)
+                        ))
 
-                else -> Text(stringResource(R.string.app_name))
+                else -> Text(stringResource(R.string.app_name), modifier = Modifier.testTag(
+                    stringResource(R.string.tag_countries_top_bar_title)
+                ))
             }
         },
         navigationIcon = {
             if (topBarState.showBack) {
-                IconButton(onClick = onBackClick) {
+                IconButton(
+                    onClick = onBackClick,
+                    modifier = Modifier.testTag(stringResource(R.string.tag_countries_back_button))
+                ) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "Atrás"
+                        contentDescription = "Back"
                     )
                 }
             }
